@@ -1,0 +1,72 @@
+.card {
+  width: 880px;
+  margin: 50px 200px 0px 200px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.card_content{
+background-color: #ffffff;
+max-width: 282px;
+border-radius: 10px 10px 10px 10px;
+}
+
+.card_image {
+  width: 282px;
+border-radius: 10px 10px 0px 0px;
+}
+
+.card_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card_info-title{
+  font-family: "Inter";
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-align: left;
+  max-width: 246px;
+  margin: 25px 15px 31px 21px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card_info-icon {
+color:black;
+max-width: 21px;
+height: 19px;
+margin: 30px 18px 30px 0px;
+}
+
+.card_info-icon:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    width: 580px;
+    margin: 50px 100px 0px 100px;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 17px 17px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card {
+    width: 282px;
+    margin: 0px 19px 0px 19px;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+}

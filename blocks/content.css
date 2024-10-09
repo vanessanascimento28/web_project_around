@@ -1,0 +1,295 @@
+.content {
+  margin: 0 auto;
+}
+
+.content_header {
+  max-width: 880px;
+  margin: 45px 200px 0px 200px;
+  /* height: 74px; */
+}
+
+.content_logo {
+  max-width: 173px;
+  margin-bottom: 41px;
+}
+
+.content_line {
+  border: 1px solid #545454;
+  max-width: 880px;
+  margin: 0px 200px 0px 200px;
+}
+
+.content_profile {
+  margin: 40px 200px 0px 200px;
+  max-width: 880px;
+  /* height: 120px; */
+  display: flex;
+  align-items: center;
+}
+
+.content_profile-image {
+  border-radius: 50%;
+  object-fit: cover;
+  max-width: 120px;
+  margin-right: 30px;
+}
+
+.content_text {
+  display: flex;
+  flex-direction: column;
+  max-width: 415px;
+  /* height: 77px; */
+  justify-content: center;
+}
+
+.content_text-square{
+  display: flex;
+  align-items: center;
+}
+
+.content_text-name {
+  font-family: "Inter";
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: left;
+  color: #ffffff;
+  max-width: 373px;
+  /* height: 39px; */
+  margin: 0px 18px 0px 0px;
+}
+
+.content_text-description {
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+  color: #ffffff;
+  max-width: 415px;
+  /* height: 22px; */
+  margin-top: 16px;
+}
+
+.content_button {
+  border: 1px solid #ffffff;
+  width: 24px;
+  height: 24px;
+  background-color: #000000;
+  text-align: center;
+}
+
+.content_button-icon {
+  width: 10px;
+  height: 10px;
+}
+
+.content_addbutton {
+  border: 2px solid #ffffff;
+  width: 150px;
+  height: 50px;
+  margin: 13px 0px 14px 165px;
+  background-color: #000000;
+}
+
+.content_addbutton-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.content_footer {
+  color: #545454;
+  max-width: 318px;
+  /* height: 18px; */
+  margin: 67px 762px 60px 200px;
+}
+
+/* ------------------------------------------------ MODO TABLET-------------------------------------------------- */
+
+@media screen and (max-width: 800px) {
+.content{
+  max-width: 780px;
+}
+
+  .content_header {
+    max-width: 700px;
+    margin: 45px 40px 0px 40px;
+  }
+
+  .content_logo {
+    max-width: 150px;
+  }
+
+  .content_line {
+    border: 1px solid #545454;
+    max-width: 700px;
+    margin: 0px 40px 0px 40px;
+  }
+
+  .content_profile {
+    margin: 40px 40px 0px 40px;
+    max-width: 700px;
+  }
+
+  .content_profile-image {
+    margin-right: 28px;
+    max-width: 100px;
+  }
+
+  .content_text {
+    max-width: 300px;
+  }
+
+  .content_text-square{
+    max-width: 300px;
+  }
+
+  .content_text-name {
+    font-size: 28px;
+    max-width: 373px;
+    /* height: 39px; */
+    margin: 0px 15px 0px 0px;
+  }
+
+  .content_text-description {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .content_button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .content_button-icon {
+    width: 8px;
+    /* height: 8px; */
+  }
+
+  .content_addbutton {
+    border: 1px solid #ffffff;
+    width: 120px;
+    height: 40px;
+  }
+
+  .content_addbutton-icon {
+    width: 15px;
+    height: 20px;
+  }
+
+  .content_footer {
+    max-width: 318px;
+    /* height: 18px; */
+    margin: 67px auto 60px 40px;
+  }
+}
+
+/* ------------------------------------------------ MODO CELULAR ------------------------------------------------- */
+
+@media screen and (max-width: 320px) {
+  .content {
+    max-width: 320px;
+    /* height: 2814px; */
+  }
+
+  .content_header {
+    max-width: 320px;
+    /* height: 46px; */
+    margin: 28px 0px 0px;
+  }
+
+  .content_logo {
+    max-width: 126px;
+    /* height: 24px; */
+    margin: 0px 167px 32px 27px;
+  }
+
+  .content_line {
+    border: 1px solid #545454;
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .content_profile {
+    margin: 42px 19px 0px;
+    max-width: 282px;
+    /* height: 286px; */
+    flex-direction: column;
+  }
+
+  .content_profile-image {
+    border-radius: 50%;
+    object-fit: cover;
+    max-width: 120px;
+    margin-right: 100px;
+    margin-left: 100px;
+  }
+
+  .content_text {
+    max-width: 282px;
+  }
+
+  .content_text-square{
+   max-width: 282px;
+  margin: 30px 19px 0px;
+  }
+
+  .content_text-name {
+    font-size: 22px;
+    line-height: 26.63px;
+    text-align: center;
+    max-width: 224px;
+    /* height: 22px; */
+    margin: 0px 10px 0px 0px;
+  }
+
+  .content_text-description {
+    font-size: 14px;
+    line-height: 16.94px;
+    text-align: center;
+    max-width: 282px;
+    /* height: 14px; */
+    margin-top: 14px;
+  }
+
+  .content_button {
+    border: 1px solid #ffffff;
+    width: 18px;
+    /* height: 18px; */
+    background-color: #000000;
+  }
+
+  .content_button:hover {
+    opacity: 60%;
+    cursor: pointer;
+  }
+
+  .content_button-icon {
+    width: 7.5px;
+    /* height: 7.5px; */
+  }
+
+  .content_addbutton {
+    border: 2px solid #ffffff;
+    width: 282px;
+    /* height: 50px; */
+    margin: 36px 19px 36px;
+    background-color: #000000;
+  }
+
+  .content_addbutton:hover {
+    opacity: 60%;
+    cursor: pointer;
+  }
+
+  .content_addbutton-icon {
+    width: 16px;
+    /* height: 16px; */
+  }
+
+  .content_footer {
+    max-width: 282px;
+    /* height: 14px; */
+    margin: 50px 19px 36px 19px;
+  }
+}
