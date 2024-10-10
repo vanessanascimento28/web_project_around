@@ -7,25 +7,25 @@
   gap: 17px;
 }
 
-.card_content{
+.card__content{
 background-color: #ffffff;
 max-width: 282px;
 border-radius: 10px 10px 10px 10px;
 }
 
-.card_image {
+.card__image {
   width: 282px;
 border-radius: 10px 10px 0px 0px;
 }
 
-.card_info {
+.card__info {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card_info-title{
-  font-family: "Inter";
+.card__info-title{
+  font-family: "Inter", Arial, sans-serif;
   font-size: 24px;
   font-weight: 900;
   line-height: 29.05px;
@@ -37,14 +37,14 @@ border-radius: 10px 10px 0px 0px;
   overflow: hidden;
 }
 
-.card_info-icon {
+.card__info-icon {
 color:black;
 max-width: 21px;
 height: 19px;
 margin: 30px 18px 30px 0px;
 }
 
-.card_info-icon:hover {
+.card__info-icon:hover {
   opacity: 50%;
   cursor: pointer;
 }

@@ -1,158 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Projeto Around da TripleTen" />
-    <meta name="keywords" content="html, css, javascript" />
-    <meta name="author" content="Vanessa Nascimento" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <title>Web_Project_Around</title>
-  </head>
 
-  <body>
-    <main class="content">
-      <div class="content_header">
-        <img
-          class="content_logo"
-          src="./images/Vector.svg"
-          alt="escrita Around The U.S."
-        />
-      </div>
-      <hr class="content_line" />
-      <div class="content_profile">
-        <img
-          class="content_profile-image"
-          src="./images/profileimage.jpg"
-          alt="Senhor de cabelos brancos sorrindo, ele veste um gorro vermelho e camiseta azul, ao fundo é possível ver o mar levemente desfocado"
-        />
-        <div class="content_text">
-          <div class="content_text-square">
-          <h1 class="content_text-name">Jacques Cousteau</h1>
-          <button class="content_button">
-            <img
-              class="content_button-icon"
-              src="./images/IconeCanetaVector.svg"
-              alt="lápis branco"
-            />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projeto Around da TripleTen" />
+  <meta name="keywords" content="html, css, javascript" />
+  <meta name="author" content="Vanessa Nascimento" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="stylesheet" href="./pages/index.css" />
+  <title>Web_Project_Around</title>
+</head>
+
+<!-- ------------------------------------- HEADER CONTENT ----------------------------------------- -->
+
+<body>
+  <main class="content">
+    <div class="content__header">
+      <img class="content__logo" src="./images/Vector.svg" alt="escrita Around The U.S." />
+    </div>
+    <hr class="content__line" />
+    <div class="content__profile">
+      <img class="content__profile-image" src="./images/profileimage.jpg"
+        alt="Senhor de cabelos brancos sorrindo, ele veste um gorro vermelho e camiseta azul, ao fundo é possível ver o mar levemente desfocado" />
+      <div class="content__text">
+        <div class="content__text-square">
+          <h1 class="content__text-name">Jacques Cousteau</h1>
+          <button class="content__button">
+            <img class="content__button-icon" src="./images/IconeCanetaVector.svg" alt="lápis branco" />
           </button>
-          </div>
-          <p class="content_text-description">Explorador</p>
         </div>
-
-
-          <button class="content_addbutton">
-            <img
-              class="content_addbutton-icon"
-              src="./images/IconeAddButton.svg"
-            />
-          </button>
-</div>
+        <p class="content__text-description">Explorador</p>
       </div>
 
-      <section class="card">
-        <div class="card_content">
-          <img
-            class="card_image"
-            src="./images/1ValedeYosemite.png"
-            alt="descrever aqui"
-          />
-          <div class="card_info">
-          <p class="card_info-title">
+
+      <button class="content__addbutton">
+        <img class="content__addbutton-icon" src="./images/IconeAddButton.svg" />
+      </button>
+    </div>
+    </div>
+
+<!-- ------------------------------------- POP UP ----------------------------------------- -->
+
+    <div class="popup">
+      <button class="popup__close-button">
+        <img class="popup__icon" src="./images/CloseIcon.svg" alt="duas retas cruzadas na diagonal formando a letra X">
+      </button>
+      <h3 class="popup__title">Editar Perfil</h3>
+      <form class="popup__form" name="popup-form">
+        <input id="name" class="popup__input" type="text" placeholder="Jacques Cousteau">
+        <input id="about" class="popup__input" type="text" placeholder="Explorador">
+        <button class="popup__save-button">Salvar</button>
+      </form>
+    </div>
+
+<!-- ------------------------------------- CARDS ----------------------------------------- -->
+
+    <ul class="card">
+      <li class="card__content">
+        <img class="card__image" src="./images/1ValedeYosemite.png" alt="descrever aqui" />
+        <div class="card__info">
+          <p class="card__info-title">
             Vale de Yosemite</p>
-            <img
-              class="card_info-icon"
-              src="./images/VectorCoracao.svg"
-              alt="coração vazado com borda preta"
-            />
+          <img class="card__info-icon" src="./images/VectorCoracao.svg" alt="coração vazado com borda preta" />
 
-          </div>
         </div>
-        <div class="card_content">
-          <img
-            class="card_image"
-            src="./images/2LagoLouise.png"
-            alt="descrever aqui"
-          />
-          <div class="card_info">
-          <p class="card_info-title">
+      </li>
+      <li class="card__content">
+        <img class="card__image" src="./images/2LagoLouise.png" alt="descrever aqui" />
+        <div class="card__info">
+          <p class="card__info-title">
             Lago Louise</p>
-            <img
-              class="card_info-icon"
-              src="./images/VectorCoracao.svg"
-              alt="coração vazado com borda preta"
-            />
+          <img class="card__info-icon" src="./images/VectorCoracao.svg" alt="coração vazado com borda preta" />
 
-          </div>
         </div>
-        <div class="card_content">
-          <img
-            class="card_image"
-            src="./images/3MontanhasCare.png"
-            alt="descrever aqui"
-          />
-          <div class="card_info">
-          <p class="card_info-title">
+      </li>
+      <li class="card__content">
+        <img class="card__image" src="./images/3MontanhasCare.png" alt="descrever aqui" />
+        <div class="card__info">
+          <p class="card__info-title">
             Montanhas Carecas</p>
-            <img
-              class="card_info-icon"
-              src="./images/VectorCoracao.svg"
-              alt="coração vazado com borda preta"
-            />
-          </div>
+          <img class="card_info-icon" src="./images/VectorCoracao.svg" alt="coração vazado com borda preta" />
         </div>
-        <div class="card_content">
-          <img
-            class="card_image"
-            src="./images/4Latemar.png"
-            alt="descrever aqui"
-          />
-          <div class="card_info">
-          <p class="card_info-title">
+      </li>
+      <li class="card__content">
+        <img class="card__image" src="./images/4Latemar.png" alt="descrever aqui" />
+        <div class="card__info">
+          <p class="card__info-title">
             Latemar</p>
-            <img
-              class="card_info-icon"
-              src="./images/VectorCoracao.svg"
-              alt="coração vazado com borda preta"
-            />
-          </div>
+          <img class="card__info-icon" src="./images/VectorCoracao.svg" alt="coração vazado com borda preta" />
         </div>
-        <div class="card_content">
-          <img
-            class="card_image"
-            src="./images/5ParqueNacional.png"
-            alt="descrever aqui"
-          />
-          <div class="card_info">
-          <p class="card_info-title">
+      </li>
+      <li class="card__content">
+        <img class="card__image" src="./images/5ParqueNacional.png" alt="descrever aqui" />
+        <div class="card__info">
+          <p class="card__info-title">
             Parque Nacional da Vanoise</p>
-            <img
-              class="card_info-icon"
-              src="./images/VectorCoracao.svg"
-              alt="coração vazado com borda preta"
-            />
-          </div>
+          <img class="card__info-icon" src="./images/VectorCoracao.svg" alt="coração vazado com borda preta" />
         </div>
-        <div class="card_content">
-          <img
-            class="card_image"
-            src="./images/6LagodiBraies.png"
-            alt="descrever aqui"
-          />
-          <div class="card_info">
-          <p class="card_info-title">
+      </li>
+      <li class="card__content">
+        <img class="card__image" src="./images/6LagodiBraies.png" alt="descrever aqui" />
+        <div class="card__info">
+          <p class="card__info-title">
             Lago di Braies </p>
-            <img
-              class="card_info-icon"
-              src="./images/VectorCoracao.svg"
-              alt="coração vazado com borda preta"
-            />
+          <img class="card__info-icon" src="./images/VectorCoracao.svg" alt="coração vazado com borda preta" />
 
-          </div>
         </div>
-      </section>
-      <div class="content_footer">© 2024 Around The U.S.</div>
-    </main>
-  </body>
+      </li>
+    </ul>
+
+    <!-- ------------------------------------- FOOTER CONTENT ----------------------------------------- -->
+
+    <div class="content__footer">© 2024 Around The U.S.</div>
+  </main>
+  <script src="./index.js"></script>
+</body>
+
 </html>
