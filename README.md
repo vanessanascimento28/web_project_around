@@ -22,5 +22,8 @@ Fazer a interação de abrir e fechar um popup ao clicar no botão de editar.
 Layout responsivo que se adapta a tela de computador (1280), tablet (800) e celular (320).
 Animações de hover nos botões.
 
+✴️Link Github
+https://github.com/vanessanascimento28/web_project_around.git
+
 ✴️Autor
 Feito por Vanessa Nascimento

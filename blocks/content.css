@@ -1,11 +1,10 @@
 .content {
-  max-width: 1280px;
-  margin: 0 auto;
   z-index: 0;
+  max-width: 880px;
+  margin: 40px auto 0px;
 }
 
 .content__profile {
-  margin: 40px 200px 0px 200px;
   max-width: 880px;
   /* height: 120px; */
   display: flex;
@@ -42,6 +41,9 @@
   max-width: 373px;
   /* height: 39px; */
   margin: 0px 18px 0px 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .content__text-description {
@@ -54,6 +56,9 @@
   max-width: 415px;
   /* height: 22px; */
   margin-top: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .content__button {
@@ -62,6 +67,7 @@
   height: 24px;
   background-color: #000000;
   text-align: center;
+  cursor: pointer;
 }
 
 .content__button:hover {
@@ -71,14 +77,13 @@
 .content__button-icon {
   width: 10px;
   height: 10px;
-  cursor: pointer;
 }
 
 .content__addbutton {
   border: 2px solid #ffffff;
   width: 150px;
   height: 50px;
-  margin: 13px 0px 14px 165px;
+  margin: 13px 0px 14px auto;
   background-color: #000000;
 }
 
@@ -92,15 +97,25 @@ opacity: 60%;
   cursor: pointer;
 }
 
+
+@media screen and (max-width: 1080px) {
+  .content{
+    max-width: 900px;
+    margin: 40px auto 0px;
+  }
+}
+
+
+
 /* ------------------------------------------------ MODO TABLET-------------------------------------------------- */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
 .content{
-  max-width: 780px;
+  max-width: 700px;
+  margin: 40px auto 0px;
 }
 
   .content__profile {
-    margin: 40px 40px 0px 40px;
     max-width: 700px;
   }
 
@@ -159,15 +174,15 @@ opacity: 60%;
 
 /* ------------------------------------------------ MODO CELULAR ------------------------------------------------- */
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 680px) {
   .content {
     max-width: 320px;
+    margin: 42px auto 0px;
     /* height: 2814px; */
   }
 
   .content__profile {
-    margin: 42px 19px 0px;
-    max-width: 282px;
+    max-width: 320px;
     /* height: 286px; */
     flex-direction: column;
   }
@@ -186,7 +201,7 @@ opacity: 60%;
 
   .content__text-square{
    max-width: 282px;
-  margin: 30px 19px 0px;
+  margin: 30px auto 0px;
   }
 
   .content__text-name {
