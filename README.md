@@ -23,7 +23,7 @@ Layout responsivo que se adapta a tela de computador (1280), tablet (800) e celu
 Animações de hover nos botões.
 
 ✴️Link Github
-https://github.com/vanessanascimento28
+https://vanessanascimento28.github.io/web_project_around/
 
 ✴️Autor
 Feito por Vanessa Nascimento
