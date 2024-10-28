@@ -26,6 +26,45 @@ const initialCards = [
   { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg" }
 ];
 
+
+// Seleciona o popup de imagem e o botão de fechar do popup
+const imagePopup = document.querySelector(".imagepopup");
+const imagePopupOverlay = document.querySelector(".imagepopup__overlay");
+const imagePopupCloseButton = document.querySelector(".imagepopup__close-button");
+const imagePopupTitle = document.querySelector(".imagepopup__title");
+
+
+// Função para abrir o popup de imagem
+function openImagePopup(imageSrc, title) {
+  const imageElement = document.createElement("img");
+  imageElement.src = imageSrc;
+  imageElement.style.maxWidth = "75vw";
+  imageElement.style.maxHeight = "75vh";
+  imageElement.classList.add("imagepopup__image");
+
+  // Atualiza o título
+  imagePopupTitle.textContent = title;
+
+  // Remove a imagem anterior, mas mantém o título e o botão de fechar
+  const existingImage = document.querySelector(".imagepopup__image");
+  if (existingImage) {
+    existingImage.remove();
+  }
+
+  // Adiciona a nova imagem e o botão de fechar ao overlay
+  imagePopupOverlay.insertBefore(imageElement, imagePopupCloseButton);
+  imagePopup.classList.add("imagepopup_opened");
+}
+
+//Fecha o popup de imagem ao clicar no botão de fechar
+imagePopupCloseButton.addEventListener("click", () => {
+imagePopup.classList.remove("imagepopup_opened");
+});
+
+
+//------------------------------------------------- ENCERRA AQUI
+
+
 // Função para abrir o popup de edição
 editButton.addEventListener("click", function openPopup() {
   popup.classList.add("popup_opened");
@@ -62,6 +101,10 @@ function createCard(name, link) {
   const coracao = cardClone.querySelector(".card__info-icon");
   const trashIcon = cardClone.querySelector(".card__trash-icon");
 
+  // Adiciona evento de clique para abrir o popup de imagem
+cardImage.addEventListener("click", () => openImagePopup(link, name));
+
+
   cardImage.src = link;
   cardImage.alt = `Imagem de ${name}`;
   cardTitle.textContent = name;
@@ -69,7 +112,11 @@ function createCard(name, link) {
   // Função de curtir/descurtir o card
   let coracaoCheio = false;
   coracao.addEventListener("click", function () {
-    coracao.src = coracaoCheio ? "./images/VectorCoracao.svg" : "./images/BlackHeart.svg";
+    if (!coracaoCheio) {
+    coracao.src ="./images/BlackHeart.svg";
+    } else {
+      coracao.src = "./images/VectorCoracao.svg";
+    }
     coracaoCheio = !coracaoCheio;
   });
 
