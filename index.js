@@ -38,8 +38,6 @@ const imagePopupTitle = document.querySelector(".imagepopup__title");
 function openImagePopup(imageSrc, title) {
   const imageElement = document.createElement("img");
   imageElement.src = imageSrc;
-  imageElement.style.maxWidth = "75vw";
-  imageElement.style.maxHeight = "75vh";
   imageElement.classList.add("imagepopup__image");
 
   // Atualiza o título
@@ -98,7 +96,7 @@ function createCard(name, link) {
 
   const cardImage = cardClone.querySelector(".card__image");
   const cardTitle = cardClone.querySelector(".card__info-title");
-  const coracao = cardClone.querySelector(".card__info-icon");
+  const heart = cardClone.querySelector(".card__info-icon");
   const trashIcon = cardClone.querySelector(".card__trash-icon");
 
   // Adiciona evento de clique para abrir o popup de imagem
@@ -110,14 +108,14 @@ cardImage.addEventListener("click", () => openImagePopup(link, name));
   cardTitle.textContent = name;
 
   // Função de curtir/descurtir o card
-  let coracaoCheio = false;
-  coracao.addEventListener("click", function () {
-    if (!coracaoCheio) {
-    coracao.src ="./images/BlackHeart.svg";
+  let heartFull = false;
+  heart.addEventListener("click", function () {
+    if (!heartFull) {
+    heart.src ="./images/BlackHeart.svg";
     } else {
-      coracao.src = "./images/VectorCoracao.svg";
+      heart.src = "./images/VectorCoracao.svg";
     }
-    coracaoCheio = !coracaoCheio;
+    heartFull = !heartFull;
   });
 
   // Função de remover o card

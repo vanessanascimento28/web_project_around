@@ -42,6 +42,11 @@
   color: #ffffff;
 }
 
+.imagepopup__image{
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
 .imagepopup_opened {
   display: flex;
   z-index: 2;
