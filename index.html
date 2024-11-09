@@ -86,6 +86,7 @@
             type="text"
             placeholder="Nome"
           />
+          <span class="error__message" id="name-error"></span>
           <input
             id="about"
             required
@@ -93,7 +94,8 @@
             type="text"
             placeholder="Sobre mim"
           />
-          <button class="popup__save-button" type="submit">Salvar</button>
+          <span class="error__message" id="about-error"></span>
+          <button class="popup__save-button" type="submit" disabled>Salvar</button>
         </form>
       </div>
     </div>
@@ -118,6 +120,7 @@
             type="text"
             placeholder="Título"
           />
+         <span class="error__message" id="local-error"></span>
           <input
             id="link"
             required
@@ -125,7 +128,8 @@
             type="text"
             placeholder="Link de imagem"
           />
-          <button class="addcard__create-button" type="submit">Criar</button>
+          <span class="error__message" id="link-error"></span>
+          <button class="addcard__create-button" type="submit" disabled>Criar</button>
         </form>
       </div>
     </div>
