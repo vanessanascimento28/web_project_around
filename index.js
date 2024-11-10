@@ -58,10 +58,13 @@ imagePopupCloseButton.addEventListener("click", () => {
 
 // Função para abrir o popup de edição
 editButton.addEventListener("click", function openPopup() {
-  popup.classList.add("popup_opened");
-  inputName.value = profileName.textContent;
-  inputAbout.value = profileAbout.textContent;
-  validateForm(); // Valida o formulário ao abrir o popup
+  // Verifica se o popup está fechado antes de abrir
+  if (!popup.classList.contains("popup_opened")) {
+    popup.classList.add("popup_opened");
+    inputName.value = profileName.textContent;
+    inputAbout.value = profileAbout.textContent;
+    validateForm(); // Valida o formulário ao abrir o popup
+  }
 });
 
 // Função para abrir o popup de adicionar card
@@ -254,22 +257,17 @@ addcard.addEventListener("click", (event) => {
   }
 });
 
-// ADICIONA NOVO CARD NA LISTA
-function addNewCard(event) {
-  event.preventDefault();
-
-  const title = inputLocal.value;
-  const url = inputLink.value;
-
-  if (title && url) {
-    const newCard = createCard(title, url);
-    cardList.prepend(newCard);
-    addcard.classList.remove("addcard_opened");
+imagePopup.addEventListener("click", (event) => {
+  if (event.target === imagePopup) {
+    imagePopup.classList.remove("imagepopup_opened");
   }
-}
+});
 
-// Evento para submeter o formulário de adicionar card
-formAddcard.addEventListener("submit", addNewCard);
+popup.addEventListener("click", (event) => {
+  if (event.target === popup) {
+    popup.classList.remove("popup_opened");
+  }
+});
 
 // FECHA O POP-UP SE CLICAR ESC
 document.addEventListener("keydown", (event) => {

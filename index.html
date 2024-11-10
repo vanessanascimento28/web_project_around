@@ -78,10 +78,12 @@
           />
         </button>
         <h3 class="popup__title">Editar Perfil</h3>
-        <form class="popup__form" name="popup-form">
+        <form class="popup__form" name="popup-form" novalidate>
           <input
             id="name"
             required
+            maxlength="40"
+            minlength="2"
             class="popup__input"
             type="text"
             placeholder="Nome"
@@ -90,12 +92,14 @@
           <input
             id="about"
             required
+            maxlength="200"
+            minlength="2"
             class="popup__input"
             type="text"
             placeholder="Sobre mim"
           />
           <span class="error__message" id="about-error"></span>
-          <button class="popup__save-button" type="submit" disabled>Salvar</button>
+          <button class="popup__save-button error__button" type="submit" disabled="true">Salvar</button>
         </form>
       </div>
     </div>
@@ -112,10 +116,12 @@
           />
         </button>
         <h3 class="addcard__title">Novo Local</h3>
-        <form class="addcard__form" name="addcard-form">
+        <form class="addcard__form" name="addcard-form" novalidate>
           <input
             id="local"
             required
+            maxlength="30"
+            minlength="2"
             class="addcard__input"
             type="text"
             placeholder="Título"
@@ -129,7 +135,7 @@
             placeholder="Link de imagem"
           />
           <span class="error__message" id="link-error"></span>
-          <button class="addcard__create-button" type="submit" disabled>Criar</button>
+          <button class="addcard__create-button error__button" type="submit" disabled="true">Criar</button>
         </form>
       </div>
     </div>
@@ -176,5 +182,6 @@
     </template>
 
     <script src="./index.js"></script>
+    <script src="./validade.js"></script>
   </body>
 </html>
