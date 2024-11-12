@@ -79,26 +79,26 @@
         </button>
         <h3 class="popup__title">Editar Perfil</h3>
         <form class="popup__form" name="popup-form" novalidate>
-          <input
+          <div class="popup__target"><input
             id="name"
             required
             maxlength="40"
             minlength="2"
-            class="popup__input"
+            class="popup__input popup__input-error"
             type="text"
             placeholder="Nome"
           />
-          <span class="error__message" id="name-error"></span>
-          <input
+          <span class="error__message" id="name-error"></span></div>
+          <div class="popup__target"><input
             id="about"
             required
             maxlength="200"
             minlength="2"
-            class="popup__input"
+            class="popup__input popup__input-error"
             type="text"
             placeholder="Sobre mim"
           />
-          <span class="error__message" id="about-error"></span>
+          <span class="error__message" id="about-error"></span></div>
           <button class="popup__save-button error__button" type="submit" disabled="true">Salvar</button>
         </form>
       </div>
@@ -117,24 +117,24 @@
         </button>
         <h3 class="addcard__title">Novo Local</h3>
         <form class="addcard__form" name="addcard-form" novalidate>
-          <input
+          <div class="addcard__target"><input
             id="local"
             required
             maxlength="30"
             minlength="2"
-            class="addcard__input"
+            class="addcard__input addcard__input-error"
             type="text"
             placeholder="Título"
           />
-         <span class="error__message" id="local-error"></span>
-          <input
+         <span class="error__message" id="local-error"></span></div>
+          <div class="addcard__target"><input
             id="link"
             required
-            class="addcard__input"
-            type="text"
+            class="addcard__input addcard__input-error"
+            type="url"
             placeholder="Link de imagem"
           />
-          <span class="error__message" id="link-error"></span>
+          <span class="error__message" id="link-error"></span></div>
           <button class="addcard__create-button error__button" type="submit" disabled="true">Criar</button>
         </form>
       </div>
