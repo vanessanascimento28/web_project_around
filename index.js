@@ -79,25 +79,6 @@ addButton.addEventListener("click", function openAddcard() {
 closeButton.addEventListener("click", () => popup.classList.remove("popup_opened"));
 closeAddbutton.addEventListener("click", () => addcard.classList.remove("addcard_opened"));
 
-// Função de validação do formulário de edição
-function validateForm() {
-  const isNameValid = inputName.value.length >= 2 && inputName.value.length <= 40;
-  const isAboutValid = inputAbout.value.length >= 2 && inputAbout.value.length <= 200;
-
-  // Validar nome
-  if (!isNameValid) {
-    showErrorMessage(inputName, "Preencha este campo.");
-  } else {
-    removeErrorMessage(inputName);
-  }
-
-  // Validar sobre
-  if (!isAboutValid) {
-    showErrorMessage(inputAbout, "Preencha este campo.");
-  } else {
-    removeErrorMessage(inputAbout);
-  }
-
   // Habilitar/desabilitar botão "Salvar"
   saveButton.disabled = !(isNameValid && isAboutValid);
   saveButton.classList.toggle("error__button", saveButton.disabled);
@@ -123,10 +104,6 @@ function removeErrorMessage(inputElement) {
     existingError.remove();
   }
 }
-
-// Evento para ativar validação ao digitar
-inputName.addEventListener("input", validateForm);
-inputAbout.addEventListener("input", validateForm);
 
 // Atualiza informações do usuário no popup de edição
 function updateUserInfo(event) {
