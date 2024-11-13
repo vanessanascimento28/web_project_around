@@ -63,7 +63,6 @@ editButton.addEventListener("click", function openPopup() {
     popup.classList.add("popup_opened");
     inputName.value = profileName.textContent;
     inputAbout.value = profileAbout.textContent;
-    validateForm(); // Valida o formulário ao abrir o popup
   }
 });
 
@@ -72,7 +71,6 @@ addButton.addEventListener("click", function openAddcard() {
   addcard.classList.add("addcard_opened");
   inputLocal.value = ""; // Limpa o campo de título do formulário
   inputLink.value = ""; // Limpa o campo de link do formulário
-  validateAddCardForm();  // Valida o formulário ao abrir o pop-up
 });
 
 // Função para fechar os popups
@@ -80,30 +78,9 @@ closeButton.addEventListener("click", () => popup.classList.remove("popup_opened
 closeAddbutton.addEventListener("click", () => addcard.classList.remove("addcard_opened"));
 
   // Habilitar/desabilitar botão "Salvar"
-  saveButton.disabled = !(isNameValid && isAboutValid);
+  //saveButton.disabled = !();
   saveButton.classList.toggle("error__button", saveButton.disabled);
-}
 
-// Função para mostrar a mensagem de erro
-function showErrorMessage(inputElement, message) {
-  const existingError = inputElement.nextElementSibling;
-  if (existingError && existingError.classList.contains("error__message")) {
-    return;
-  }
-
-  const errorElement = document.createElement("span");
-  errorElement.classList.add("error__message");
-  errorElement.textContent = message;
-  inputElement.insertAdjacentElement("afterend", errorElement);
-}
-
-// Função para remover mensagens de erro
-function removeErrorMessage(inputElement) {
-  const existingError = inputElement.nextElementSibling;
-  if (existingError && existingError.classList.contains("error__message")) {
-    existingError.remove();
-  }
-}
 
 // Atualiza informações do usuário no popup de edição
 function updateUserInfo(event) {
@@ -166,62 +143,11 @@ function adicionarNovoCard(event) {
 }
 formAddcard.addEventListener("submit", adicionarNovoCard);
 
-// Função para validar o formulário de adicionar card
-function validateAddCardForm() {
-  const isTitleValid = inputLocal.value.length >= 2 && inputLocal.value.length <= 30;
-  const isUrlValid = isValidUrl(inputLink.value);
-
-  // Remover mensagens de erro anteriores
-  removeAddCardErrorMessages();
-
-  // Exibir mensagens de erro para os campos inválidos
-  if (inputLocal.value && !isTitleValid) {
-    showAddCardErrorMessage(inputLocal, "Preencha este campo.");
-  }
-  if (inputLink.value && !isUrlValid) {
-    showAddCardErrorMessage(inputLink, "Por favor, insira um endereço web.");
-  }
-
-  // Habilitar ou desabilitar o botão de salvar com base na validade dos campos
-  saveAddCardButton.disabled = !(isTitleValid && isUrlValid);
-  saveAddCardButton.classList.toggle("error__button", saveAddCardButton.disabled);
-}
-
-// URL VÁLIDA
-function isValidUrl(url) {
-  const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-  return urlPattern.test(url);
-}
-
-// MENSAGENS DE ERRO
-function showAddCardErrorMessage(inputElement, message) {
-  const existingError = inputElement.nextElementSibling;
-  if (existingError && existingError.classList.contains("error__message")) {
-    return;
-  }
-
-  const errorElement = document.createElement("span");
-  errorElement.classList.add("error__message");
-  errorElement.textContent = message;
-  inputElement.insertAdjacentElement("afterend", errorElement);
-}
-
-// REMOVER MENSAGEM DE ERRO
-function removeAddCardErrorMessages() {
-  const errorMessages = document.querySelectorAll(".error__message");
-  errorMessages.forEach((error) => error.remove());
-}
-
-// VALIDAÇÃO USUÁRIO DIGITA
-inputLocal.addEventListener("input", validateAddCardForm);
-inputLink.addEventListener("input", validateAddCardForm);
-
 // ABRE POP UP ADD CARD
 addButton.addEventListener("click", function openAddCardPopup() {
   addcard.classList.add("addcard_opened");
   inputLocal.value = ""; // Limpa o campo de título
   inputLink.value = "";   // Limpa o campo de URL
-  validateAddCardForm();  // Valida o formulário ao abrir o pop-up
 });
 
 // FECHA O POP UP ADD CARD
