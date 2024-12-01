@@ -1,4 +1,6 @@
-// Seleciona elementos do DOM
+import Card from "./card.js";
+
+
 const popup = document.querySelector(".popup");
 const addcard = document.querySelector(".addcard");
 const editButton = document.querySelector(".content__button");
@@ -13,12 +15,12 @@ const inputLocal = formAddcard.querySelector("#local");
 const inputLink = formAddcard.querySelector("#link");
 const profileName = document.querySelector(".content__text-name");
 const profileAbout = document.querySelector(".content__text-description");
-const saveButton = formPopup.querySelector(".popup__save-button"); // Botão "Salvar" de perfil
-const saveAddCardButton = formAddcard.querySelector(".addcard__save-button"); // Botão "Salvar" de adicionar card
+const saveButton = formPopup.querySelector(".popup__save-button");
+const saveAddCardButton = formAddcard.querySelector(".addcard__save-button");
 const template = document.querySelector("template");
 const cardList = document.querySelector(".card");
 
-// Array de cards iniciais
+// ------------------------------------ CARD INICIAIS
 const initialCards = [
   { name: "Vale de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg" },
   { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg" },
@@ -28,13 +30,14 @@ const initialCards = [
   { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg" }
 ];
 
-// Seleciona o popup de imagem e o botão de fechar do popup
+// --------------------------------------- POP IMAGEM E FECHA BOTAO
+
 const imagePopup = document.querySelector(".imagepopup");
 const imagePopupOverlay = document.querySelector(".imagepopup__overlay");
 const imagePopupCloseButton = document.querySelector(".imagepopup__close-button");
 const imagePopupTitle = document.querySelector(".imagepopup__title");
 
-// Função para abrir o popup de imagem
+// --------------------------------------- ABRE POP IMAGEM
 function openImagePopup(imageSrc, title) {
   const imageElement = document.createElement("img");
   imageElement.src = imageSrc;
@@ -77,9 +80,9 @@ addButton.addEventListener("click", function openAddcard() {
 closeButton.addEventListener("click", () => popup.classList.remove("popup_opened"));
 closeAddbutton.addEventListener("click", () => addcard.classList.remove("addcard_opened"));
 
-  // Habilitar/desabilitar botão "Salvar"
-  //saveButton.disabled = !();
-  saveButton.classList.toggle("error__button", saveButton.disabled);
+// Habilitar/desabilitar botão "Salvar"
+//saveButton.disabled = !();
+saveButton.classList.toggle("error__button", saveButton.disabled);
 
 
 // Atualiza informações do usuário no popup de edição
@@ -91,39 +94,16 @@ function updateUserInfo(event) {
 }
 formPopup.addEventListener("submit", updateUserInfo);
 
-// Função para criar um card
-function createCard(name, link) {
-  const cardClone = template.content.cloneNode(true);
-
-  const cardImage = cardClone.querySelector(".card__image");
-  const cardTitle = cardClone.querySelector(".card__info-title");
-  const heart = cardClone.querySelector(".card__info-icon");
-  const trashIcon = cardClone.querySelector(".card__trash-icon");
-
-  cardImage.addEventListener("click", () => openImagePopup(link, name));
-
-  cardImage.src = link;
-  cardImage.alt = `Imagem de ${name}`;
-  cardTitle.textContent = name;
-
-  let heartFull = false;
-  heart.addEventListener("click", function () {
-    heart.src = heartFull ? "./images/VectorCoracao.svg" : "./images/BlackHeart.svg";
-    heartFull = !heartFull;
-  });
-
-  trashIcon.addEventListener("click", (event) => {
-    event.target.closest(".card__content").remove();
-  });
-
-  return cardClone;
-}
-
 // Adiciona cards iniciais na página
 function adicionarCardsIniciais() {
   initialCards.forEach(cardData => {
-    const cardElement = createCard(cardData.name, cardData.link);
-    cardList.appendChild(cardElement);
+
+    const newC = new Card({
+      card: cardData, templateCard: "#card-template",
+      openImagePopup,
+    })
+
+    cardList.appendChild(newC.createCard());
   });
 }
 document.addEventListener("DOMContentLoaded", adicionarCardsIniciais);
@@ -136,8 +116,12 @@ function adicionarNovoCard(event) {
   const link = inputLink.value;
 
   if (title && link) {
-    const newCard = createCard(title, link);
-    cardList.prepend(newCard); // Adiciona o novo card no início da lista
+    const newCard = new Card({
+      card: { name: title, link }, templateCard: "#card-template",
+      openImagePopup,
+    })
+
+    cardList.prepend(newCard.createCard()); // Adiciona o novo card no início da lista
     addcard.classList.remove("addcard_opened"); // Fecha o popup
   }
 }
