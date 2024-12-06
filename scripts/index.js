@@ -1,67 +1,33 @@
 import Card from "./card.js";
+import FormValidator from "./FormValidator.js";
+import {
+  popup,
+  addcard,
+  editButton,
+  addButton,
+  closeButton,
+  closeAddbutton,
+  formPopup,
+  inputName,
+  inputAbout,
+  formAddcard,
+  inputLocal,
+  inputLink,
+  profileName,
+  profileAbout,
+  saveButton,
+  cardList,
+  initialCards,
+  imagePopup,
+  imagePopupCloseButton,
+  openImagePopup
+} from "./utils.js"
 
-
-const popup = document.querySelector(".popup");
-const addcard = document.querySelector(".addcard");
-const editButton = document.querySelector(".content__button");
-const addButton = document.querySelector(".content__addbutton");
-const closeButton = document.querySelector(".popup__close-button");
-const closeAddbutton = document.querySelector(".addcard__close-button");
-const formPopup = document.querySelector(".popup__form");
-const inputName = formPopup.querySelector("#name");
-const inputAbout = formPopup.querySelector("#about");
-const formAddcard = document.querySelector(".addcard__form");
-const inputLocal = formAddcard.querySelector("#local");
-const inputLink = formAddcard.querySelector("#link");
-const profileName = document.querySelector(".content__text-name");
-const profileAbout = document.querySelector(".content__text-description");
-const saveButton = formPopup.querySelector(".popup__save-button");
-const saveAddCardButton = formAddcard.querySelector(".addcard__save-button");
-const template = document.querySelector("template");
-const cardList = document.querySelector(".card");
-
-// ------------------------------------ CARD INICIAIS
-const initialCards = [
-  { name: "Vale de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg" },
-  { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg" },
-  { name: "Montanhas Carecas", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg" },
-  { name: "Latemar", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg" },
-  { name: "Parque Nacional da Vanoise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg" },
-  { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg" }
-];
-
-// --------------------------------------- POP IMAGEM E FECHA BOTAO
-
-const imagePopup = document.querySelector(".imagepopup");
-const imagePopupOverlay = document.querySelector(".imagepopup__overlay");
-const imagePopupCloseButton = document.querySelector(".imagepopup__close-button");
-const imagePopupTitle = document.querySelector(".imagepopup__title");
-
-// --------------------------------------- ABRE POP IMAGEM
-function openImagePopup(imageSrc, title) {
-  const imageElement = document.createElement("img");
-  imageElement.src = imageSrc;
-  imageElement.classList.add("imagepopup__image");
-
-  imagePopupTitle.textContent = title;
-
-  const existingImage = document.querySelector(".imagepopup__image");
-  if (existingImage) {
-    existingImage.remove();
-  }
-
-  imagePopupOverlay.insertBefore(imageElement, imagePopupCloseButton);
-  imagePopup.classList.add("imagepopup_opened");
-}
-
-// Fecha o popup de imagem ao clicar no botão de fechar
 imagePopupCloseButton.addEventListener("click", () => {
   imagePopup.classList.remove("imagepopup_opened");
 });
 
-// Função para abrir o popup de edição
 editButton.addEventListener("click", function openPopup() {
-  // Verifica se o popup está fechado antes de abrir
   if (!popup.classList.contains("popup_opened")) {
     popup.classList.add("popup_opened");
     inputName.value = profileName.textContent;
@@ -69,23 +35,17 @@ editButton.addEventListener("click", function openPopup() {
   }
 });
 
-// Função para abrir o popup de adicionar card
 addButton.addEventListener("click", function openAddcard() {
   addcard.classList.add("addcard_opened");
-  inputLocal.value = ""; // Limpa o campo de título do formulário
-  inputLink.value = ""; // Limpa o campo de link do formulário
+  inputLocal.value = "";
+  inputLink.value = "";
 });
 
-// Função para fechar os popups
 closeButton.addEventListener("click", () => popup.classList.remove("popup_opened"));
 closeAddbutton.addEventListener("click", () => addcard.classList.remove("addcard_opened"));
 
-// Habilitar/desabilitar botão "Salvar"
-//saveButton.disabled = !();
 saveButton.classList.toggle("error__button", saveButton.disabled);
 
-
-// Atualiza informações do usuário no popup de edição
 function updateUserInfo(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
@@ -94,7 +54,7 @@ function updateUserInfo(event) {
 }
 formPopup.addEventListener("submit", updateUserInfo);
 
-// Adiciona cards iniciais na página
+
 function adicionarCardsIniciais() {
   initialCards.forEach(cardData => {
 
@@ -108,7 +68,7 @@ function adicionarCardsIniciais() {
 }
 document.addEventListener("DOMContentLoaded", adicionarCardsIniciais);
 
-// Função para adicionar um novo card personalizado no início da lista
+
 function adicionarNovoCard(event) {
   event.preventDefault();
 
@@ -127,17 +87,17 @@ function adicionarNovoCard(event) {
 }
 formAddcard.addEventListener("submit", adicionarNovoCard);
 
-// ABRE POP UP ADD CARD
+
 addButton.addEventListener("click", function openAddCardPopup() {
   addcard.classList.add("addcard_opened");
-  inputLocal.value = ""; // Limpa o campo de título
-  inputLink.value = "";   // Limpa o campo de URL
+  inputLocal.value = "";
+  inputLink.value = "";
 });
 
-// FECHA O POP UP ADD CARD
+
 closeAddbutton.addEventListener("click", () => addcard.classList.remove("addcard_opened"));
 
-// FECHA O POP UP SE CLICAR NA OVERLAY
+
 addcard.addEventListener("click", (event) => {
   if (event.target === addcard) {
     addcard.classList.remove("addcard_opened");
@@ -156,10 +116,9 @@ popup.addEventListener("click", (event) => {
   }
 });
 
-// FECHA O POP-UP SE CLICAR ESC
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    // Fechar popups se estiverem abertos
+
     if (popup.classList.contains("popup_opened")) {
       popup.classList.remove("popup_opened");
     }
@@ -171,3 +130,25 @@ document.addEventListener("keydown", (event) => {
     }
   }
 });
+
+new FormValidator({
+  config: {
+    inputSelector: "input",
+    submitButtonSelector: "button",
+    inactiveButtonClass: "error__button",
+    inputErrorClass: "popup__input-error",
+    errorClass: "error__message",
+  },
+  formSelector: "#user-form"
+}).enableValidation()
+
+new FormValidator({
+  config: {
+    inputSelector: "input",
+    submitButtonSelector: "button",
+    inactiveButtonClass: "error__button",
+    inputErrorClass: "popup__input-error",
+    errorClass: "error__message",
+  },
+  formSelector: "#card-form"
+}).enableValidation()
