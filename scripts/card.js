@@ -14,10 +14,10 @@ export default class Card {
 
     this._element.querySelector(".card__info-icon").addEventListener("click", () => {
 
-      if (this._element.querySelector(".card__info-icon").getAttribute("src") == "./images/VectorCoracao.svg") {
+      if (this._element.querySelector(".card__info-icon").getAttribute("src") == "./images/Vectorheart.svg") {
         this._element.querySelector(".card__info-icon").setAttribute("src", "./images/BlackHeart.svg");
       } else {
-        this._element.querySelector(".card__info-icon").setAttribute("src", "./images/VectorCoracao.svg");
+        this._element.querySelector(".card__info-icon").setAttribute("src", "./images/Vectorheart.svg");
       }
     })
 

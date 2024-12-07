@@ -1,4 +1,4 @@
-import Card from "./card.js";
+import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import {
   popup,
@@ -55,7 +55,7 @@ function updateUserInfo(event) {
 formPopup.addEventListener("submit", updateUserInfo);
 
 
-function adicionarCardsIniciais() {
+function addInitialCards() {
   initialCards.forEach(cardData => {
 
     const newC = new Card({
@@ -66,10 +66,10 @@ function adicionarCardsIniciais() {
     cardList.appendChild(newC.createCard());
   });
 }
-document.addEventListener("DOMContentLoaded", adicionarCardsIniciais);
+document.addEventListener("DOMContentLoaded", addInitialCards);
 
 
-function adicionarNovoCard(event) {
+function addNewCard(event) {
   event.preventDefault();
 
   const title = inputLocal.value;
@@ -81,11 +81,11 @@ function adicionarNovoCard(event) {
       openImagePopup,
     })
 
-    cardList.prepend(newCard.createCard()); // Adiciona o novo card no início da lista
-    addcard.classList.remove("addcard_opened"); // Fecha o popup
+    cardList.prepend(newCard.createCard());
+    addcard.classList.remove("addcard_opened");
   }
 }
-formAddcard.addEventListener("submit", adicionarNovoCard);
+formAddcard.addEventListener("submit", addNewCard);
 
 
 addButton.addEventListener("click", function openAddCardPopup() {
