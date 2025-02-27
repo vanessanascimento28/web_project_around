@@ -1,8 +1,8 @@
 export default class Card {
-  constructor({ card, templateCard, openImagePopup }) {
+  constructor({ card, templateCard, handleCardClick }) {
     this._card = card;
     this._templateCard = templateCard;
-    this._openImagePopup = openImagePopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
