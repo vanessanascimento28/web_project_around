@@ -14,13 +14,13 @@ export const inputLink = formAddcard.querySelector("#link");
 export const profileName = document.querySelector(".content__text-name");
 export const profileAbout = document.querySelector(".content__text-description");
 export const saveButton = formPopup.querySelector(".popup__save-button");
-const saveAddCardButton = formAddcard.querySelector(".addcard__save-button");
-const template = document.querySelector("template");
+export const saveAddCardButton = formAddcard.querySelector(".addcard__save-button");
+export const template = document.querySelector("template");
 export const imagePopup = document.querySelector(".imagepopup");
-const imagePopupOverlay = document.querySelector(".imagepopup__overlay");
+export const imagePopupOverlay = document.querySelector(".imagepopup__overlay");
 export const imagePopupCloseButton = document.querySelector(".imagepopup__close-button");
-const imagePopupTitle = document.querySelector(".imagepopup__title");
-export const cardList = document.querySelector(".card");
+export const imagePopupTitle = document.querySelector(".imagepopup__title");
+export const cardList = document.querySelector(".cards-list");
 export const initialCards = [
   { name: "Vale de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg" },
   { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg" },

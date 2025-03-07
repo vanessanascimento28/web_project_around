@@ -1,8 +1,9 @@
 export default class Card {
-  constructor({ card, templateCard, handleCardClick }) {
+  constructor({ card, templateCard, handleCardClick, handleImageClick }) {
     this._card = card;
     this._templateCard = templateCard;
     this._handleCardClick = handleCardClick;
+    this._handleImageClick = handleImageClick;
   }
 
   _getTemplate() {
@@ -26,11 +27,12 @@ export default class Card {
     })
 
     this._element.querySelector(".card__image").addEventListener("click", () => {
-      this._openImagePopup(this._card.link, this._card.name)
+      this._handleImageClick(this._card)
     })
   }
 
   createCard() {
+
     this._element = this._getTemplate()
 
     this._element.querySelector(".card__image").setAttribute("src", this._card.link)

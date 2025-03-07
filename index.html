@@ -58,7 +58,7 @@
 
       <!-- ------------------------------------- CARDS ----------------------------------------- -->
 
-      <ul class="card"></ul>
+      <ul class="cards-list"></ul>
 
       <!-- ------------------------------------- FOOTER CONTENT ----------------------------------------- -->
 
@@ -154,7 +154,7 @@
             <span class="error__message" id="link-error"></span>
           </div>
           <button
-            class="addcard__create-button error__button"
+            class="addcard__button error__button"
             type="submit"
             disabled="true"
           >
@@ -175,7 +175,7 @@
             alt="duas retas cruzadas na diagonal formando a letra X"
           />
         </button>
-        <div class="imagepopup__image"></div>
+        <img class="imagepopup__image" />
         <p class="imagepopup__title">Local Aqui</p>
       </div>
     </div>
@@ -184,11 +184,7 @@
 
     <template id="card-template">
       <li class="card__content">
-        <img
-          class="card__image"
-          src="./images/1ValedeYosemite.png"
-          alt="descrever aqui"
-        />
+        <img class="card__image" src="" alt="" />
         <img
           class="card__trash-icon"
           src="./images/Trash.svg"
