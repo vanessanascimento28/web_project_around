@@ -1,10 +1,11 @@
-import Card from "./card.js";
+import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
 import Userinfo from "./Userinfo.js";
 import PopupWithForm from "./Popupwithform.js";
 import PopupWithImage from "./Popupwithimage.js";
+import Api from "./Api.js";
 import {
   popup,
   addcard,
@@ -25,33 +26,97 @@ import {
   initialCards,
   imagePopup,
   imagePopupCloseButton,
+  ownerId,
 } from "./utils.js"
 
-const handleCardClick = (link, name) => {
-};
+//------------ Instância de Api --------------
 
+const apiInst = new Api({
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
+  headers: {
+    authorization: "d3aaa0c6-6bf2-4359-aa87-fb4acbb3d4e8",
+    "Content-Type": "application/json"
+  }
+})
+
+//----------Informações do Usuário ------------
+
+const userInfo = new Userinfo({
+  name: ".content__text-name",
+  about: ".content__text-description",
+  avatar: ".content__profile-image"
+})
+
+//----------- Api do Usuário -------------------
+
+apiInst.getUsersInfo().then(res => {
+  if (res.status !== 200) { //se for diferente de 200 retorna com erro
+    return Promise.reject("Deu erro no get users!")
+  }
+  return res.json()
+})
+  .then(users => {
+    const owner = users.find(user => user._id == ownerId) //verifica se sou o usuário criador
+    if (!owner) {
+      throw new Error("Seu usuário não foi encontrado!");
+    }
+    userInfo.setUserInfo(owner.name, owner.about, owner.avatar);
+  })
+  .catch(error => {
+    console.log(`[GET] - /users - ${error}`);
+  });
+
+//------------- Remove o Popup de Imagem ----------------
 
 imagePopupCloseButton.addEventListener("click", () => {
   imagePopup.classList.remove("imagepopup_opened");
 });
 
+closeButton.addEventListener("click", () => popup.classList.remove("popup_opened")); //Remove o Popup
 
-closeButton.addEventListener("click", () => popup.classList.remove("popup_opened"));
+saveButton.classList.toggle("error__button", saveButton.disabled); //Desabilita o botão
 
-saveButton.classList.toggle("error__button", saveButton.disabled);
 
-const userInfo = new Userinfo({
-  name: ".content__text-name",
-  about: ".content__text-description"
-})
+//---- Curtir e Descurtir o Card -------
+
+function handleLike(cardId, isLiked) {
+  if (!isLiked) {
+    return apiInst.updateLike(cardId);
+
+  }
+
+  return apiInst.removeLike(cardId);
+}
+
+// ------------- Api deletar o cartão do idUser ------------
+
+function deleteCard(card) {
+  if (card.owner !== ownerId) {
+  } if (trashIcon) {
+    document.querySelector(".card__trash-icon").remove;
+  }
+
+  const cardId = card._id
+
+  apiInst.deleteCard(cardId).then(res => {
+    if (res.status !== 204) {
+      return Promise.reject(`Erro no delete do id: ${cardId}`)
+    }
+  }).catch(error => {
+    console.log(`[DELETE] - /cards - ${error}`);
+  })
+}
+
+let section
 
 function showItens(card) {
   console.log(card)
   const newCard = new Card({
     card: card,
     templateCard: "#card-template",
-    handleCardClick: handleCardClick,
+    handleCardClick: "handleCardClick",
     handleImageClick: clickImage,
+    handleLike
   });
   cardList.appendChild(newCard.createCard());
 }
@@ -62,41 +127,88 @@ function clickImage(card) {
   popupWithImage.open(card);
 }
 
-const section = new Section({
-  items: initialCards,
-  renderer: showItens
-}, ".card");
-
-section.renderItems();
 
 
-function addNewCard(event) {
-  event.preventDefault();
+// ------------- API dos Cards Iniciais ------------------
 
-  const title = inputLocal.value;
-  const link = inputLink.value;
+apiInst.getInitialCards()
+  .then(res => {
+    if (res.status !== 200) {
+      return Promise.reject("Deu erro no get cards!")
+    }
+    return res.json()
+  })
+  .then(card => {
 
-  if (title && link) {
+    section = new Section({
+      items: card,
+      renderer: showItens
+    }, ".cards-list");
+    section.renderItems();
+
+  }).catch(error => {
+    console.log(`[GET] - /cards - ${error}`);
+  })
+
+function addNewCard(formData) {
+
+  apiInst.createCard({
+    "isLiked": false,
+    "name": formData.local,
+    "link": formData.link,
+    "owner": ownerId,
+    "createdAt": new Date()
+  }).then(res => {
+    if (res.status !== 201) {
+      return Promise.reject("Deu erro no create card")
+    }
+    return res.json()
+  }).then(card => {
+
     const newCard = new Card({
-      card: { name: title, link },
+      card: card,
       templateCard: "#card-template",
-      handleCardClick,
+      handleCardClick: "click",
       handleImageClick: clickImage,
+      handleLike
     });
 
-    cardList.prepend(newCard.createCard());
-    addcard.classList.remove("addcard_opened");
-  }
+    section.addItem(newCard.createCard());
+
+  }).catch(error => {
+    console.error(`[POST] - /cards- ${error}`);
+  })
+
 }
-formAddcard.addEventListener("submit", addNewCard);
 
 popupWithImage.setEventListeners();
+
+// ----- Pop up do edit do User (nome e sobre) -----
 
 const popupWithFormUser = new PopupWithForm({
   popupSelector: ".popup",
   handleFormSubmit: (formData) => {
-    console.log("Dados do formulário:", formData);
     userInfo.setUserInfo(formData);
+
+    apiInst.updateUser(formData)
+      .then(res => {
+        if (res.status !== 200) {
+          return Promise.reject("Deu erro no patch")
+        }
+        return res.json();
+
+      })
+      .then(user => {
+
+        userInfo.setUserInfo({
+          name: user.name,
+          about: user.about,
+          avatar: user.avatar
+        });
+      })
+      .catch(error => {
+        console.error(`[GET] - /users/me - ${error}`);
+      })
   },
 });
 
@@ -106,20 +218,23 @@ editButton.addEventListener("click", () => {
   popupWithFormUser.open()
 })
 
+// ----- Atualizar o User (nome e sobre) -----
+
 const popupWithFormImage = new PopupWithForm({
   popupSelector: ".addcard",
   handleFormSubmit: (formData) => {
     console.log("Dados do formulário:", formData);
-    //form data pro new card
+    addNewCard(formData)
   },
-});
+})
+
+// --------- Eventos de Escuta ------------
 
 popupWithFormImage.setEventListeners();
 
 addButton.addEventListener("click", () => {
   popupWithFormImage.open()
 })
-
 
 addcard.addEventListener("click", (event) => {
   if (event.target === addcard) {
@@ -154,6 +269,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+//valida os Forms
 new FormValidator({
   config: {
     inputSelector: "input",

@@ -29,11 +29,20 @@
 
     <main class="content">
       <div class="content__profile">
-        <img
-          class="content__profile-image"
-          src="./images/profileimage.jpg"
-          alt="Senhor de cabelos brancos sorrindo, ele veste um gorro vermelho e camiseta azul, ao fundo é possível ver o mar levemente desfocado"
-        />
+        <div class="content__profile-wrapper">
+          <img
+            class="content__profile-image"
+            src="./images/profileimage.jpg"
+            alt="Senhor de cabelos brancos sorrindo, ele veste um gorro vermelho e camiseta azul, ao fundo é possível ver o mar levemente desfocado"
+          />
+          <button class="content__deletebtn">
+            <img
+              class="content__edit-icon"
+              src="./images/IconeCanetaEditor.svg"
+              alt="ícone de edição"
+            />
+          </button>
+        </div>
         <div class="content__text">
           <div class="content__text-square">
             <h1 class="content__text-name">Jacques Cousteau</h1>
@@ -180,6 +189,22 @@
       </div>
     </div>
 
+    <!-------------------------------------------POPUP CONFIRMATION DELETE------------------------>
+    <div class="popupconfirmation">
+      <div class="popupconfirmation__overlay">
+        <button class="popupconfirmation__close-button">
+          <img
+            class="popupconfirmation__icon"
+            src="./images/CloseIcon.svg"
+            alt="duas retas cruzadas na diagonal formando a letra X"
+          />
+        </button>
+        <div class="popupconfirmation__content">
+          <h4 class="popupconfirmation__title">Tem certeza?</h4>
+          <button class="popupconfirmation__button" type="submit">Sim</button>
+        </div>
+      </div>
+    </div>
     <!-- ------------------------------------- TEMPLATE CARD ----------------------------------------- -->
 
     <template id="card-template">

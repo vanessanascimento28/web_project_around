@@ -48,6 +48,7 @@ export default class FormValidator {
         this._enableButtonState();
       }
     }
+
   }
 
   _setEventListeners() {

@@ -21,6 +21,7 @@ export const imagePopupOverlay = document.querySelector(".imagepopup__overlay");
 export const imagePopupCloseButton = document.querySelector(".imagepopup__close-button");
 export const imagePopupTitle = document.querySelector(".imagepopup__title");
 export const cardList = document.querySelector(".cards-list");
+export const ownerId = "41661518c704cfd7129ae9e9";
 export const initialCards = [
   { name: "Vale de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg" },
   { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg" },

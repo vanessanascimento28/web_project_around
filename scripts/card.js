@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ card, templateCard, handleCardClick, handleImageClick }) {
+  constructor({ card, templateCard, handleCardClick, handleImageClick, handleLike }) {
     this._card = card;
     this._templateCard = templateCard;
     this._handleCardClick = handleCardClick;
     this._handleImageClick = handleImageClick;
+    this._handleLike = handleLike;
   }
 
   _getTemplate() {
@@ -15,11 +16,23 @@ export default class Card {
 
     this._element.querySelector(".card__info-icon").addEventListener("click", () => {
 
-      if (this._element.querySelector(".card__info-icon").getAttribute("src") == "./images/Vectorheart.svg") {
-        this._element.querySelector(".card__info-icon").setAttribute("src", "./images/BlackHeart.svg");
-      } else {
-        this._element.querySelector(".card__info-icon").setAttribute("src", "./images/Vectorheart.svg");
-      }
+      this._handleLike(this._card._id, this._card.isLiked)
+        .then(res => {
+
+          return res.json()
+        }).then(card => {
+
+          this._card = card
+          if (this._card.isLiked) {
+            this._element.querySelector(".card__info-icon").setAttribute("src", "./images/BlackHeart.svg");
+          } else {
+            this._element.querySelector(".card__info-icon").setAttribute("src", "./images/Vectorheart.svg");
+          }
+          return
+        }).catch(error => {
+          console.error(error)
+          console.error("Update Like Error")
+        })
     })
 
     this._element.querySelector(".card__trash-icon").addEventListener("click", (e) => {
@@ -34,7 +47,11 @@ export default class Card {
   createCard() {
 
     this._element = this._getTemplate()
-
+    if (this._card.isLiked) {
+      this._element.querySelector(".card__info-icon").setAttribute("src", "./images/BlackHeart.svg");
+    } else {
+      this._element.querySelector(".card__info-icon").setAttribute("src", "./images/Vectorheart.svg");
+    }
     this._element.querySelector(".card__image").setAttribute("src", this._card.link)
     this._element.querySelector(".card__image").setAttribute("alt", this._card.name)
     this._element.querySelector(".card__info-title").textContent = this._card.name

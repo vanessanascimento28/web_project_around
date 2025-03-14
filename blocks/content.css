@@ -6,9 +6,23 @@
 
 .content__profile {
   max-width: 880px;
-  /* height: 120px; */
   display: flex;
   align-items: center;
+}
+
+.content__profile-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content__edit-icon {
+  position: absolute;
+  margin-right: 30px;
+  max-width: 26px;
+  border-radius: 50%;
+  opacity: 0;
 }
 
 .content__profile-image {
@@ -16,17 +30,21 @@
   object-fit: cover;
   max-width: 120px;
   margin-right: 30px;
+  display: block;
+}
+
+.content__profile-image:hover {
+  opacity: 80%;
 }
 
 .content__text {
   display: flex;
   flex-direction: column;
   max-width: 415px;
-  /* height: 77px; */
   justify-content: center;
 }
 
-.content__text-square{
+.content__text-square {
   display: flex;
   align-items: center;
 }
@@ -88,7 +106,7 @@
 }
 
 .content__addbutton:hover {
-opacity: 60%;
+  opacity: 60%;
 }
 
 .content__addbutton-icon {
@@ -97,23 +115,20 @@ opacity: 60%;
   cursor: pointer;
 }
 
-
 @media screen and (max-width: 1080px) {
-  .content{
+  .content {
     max-width: 900px;
     margin: 40px auto 0px;
   }
 }
 
-
-
 /* ------------------------------------------------ MODO TABLET-------------------------------------------------- */
 
 @media screen and (max-width: 880px) {
-.content{
-  max-width: 700px;
-  margin: 40px auto 0px;
-}
+  .content {
+    max-width: 700px;
+    margin: 40px auto 0px;
+  }
 
   .content__profile {
     max-width: 700px;
@@ -128,7 +143,7 @@ opacity: 60%;
     max-width: 300px;
   }
 
-  .content__text-square{
+  .content__text-square {
     max-width: 300px;
   }
 
@@ -199,9 +214,9 @@ opacity: 60%;
     max-width: 282px;
   }
 
-  .content__text-square{
-   max-width: 282px;
-  margin: 30px auto 0px;
+  .content__text-square {
+    max-width: 282px;
+    margin: 30px auto 0px;
   }
 
   .content__text-name {
