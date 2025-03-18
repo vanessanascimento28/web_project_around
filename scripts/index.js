@@ -269,6 +269,34 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// --------------- Abrir e Fechar o Popup de Confirmação -------------------
+
+const popupConfirmation = document.querySelector(".popupconfirmation");
+const confirmButton = popupConfirmation.querySelector(".popupconfirmation__button");
+const cancelButton = popupConfirmation.querySelector(".popupconfirmation__close-button");
+
+// Confirma a exclusão
+confirmButton.addEventListener("click", () => {
+  if (window.cardToDelete) {
+    window.cardToDelete.remove();
+    window.cardToDelete = null;
+  }
+  popupConfirmation.style.display = "none";
+});
+
+// Cancela a exclusão
+cancelButton.addEventListener("click", () => {
+  popupConfirmation.style.display = "none";
+});
+
+// Fecha no ESC
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    popupConfirmation.style.display = "none";
+  }
+});
+
+
 //valida os Forms
 new FormValidator({
   config: {

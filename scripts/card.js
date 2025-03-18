@@ -35,9 +35,13 @@ export default class Card {
         })
     })
 
-    this._element.querySelector(".card__trash-icon").addEventListener("click", (e) => {
-      e.target.closest(".card__content").remove()
-    })
+    this._element.querySelector(".card__trash-icon").addEventListener("click", () => {
+      // Armazena o card a ser deletado em uma variável global
+      window.cardToDelete = this._element;
+
+      // Exibe o popup de confirmação
+      document.querySelector(".popupconfirmation").style.display = "flex";
+    });
 
     this._element.querySelector(".card__image").addEventListener("click", () => {
       this._handleImageClick(this._card)
