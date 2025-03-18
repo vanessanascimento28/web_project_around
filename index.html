@@ -35,7 +35,7 @@
             src="./images/profileimage.jpg"
             alt="Senhor de cabelos brancos sorrindo, ele veste um gorro vermelho e camiseta azul, ao fundo é possível ver o mar levemente desfocado"
           />
-          <button class="content__deletebtn">
+          <button class="content__editbtn">
             <img
               class="content__edit-icon"
               src="./images/IconeCanetaEditor.svg"
@@ -205,6 +205,47 @@
         </div>
       </div>
     </div>
+
+    <!--------------------------------- POPUP CHANGE PROFILE PICTURE------------------------>
+
+    <div class="popupprofilepicture">
+      <div class="popupprofilepicture__overlay">
+        <button class="popupprofilepicture__close-button">
+          <img
+            class="popupprofilepicture__icon"
+            src="./images/CloseIcon.svg"
+            alt="duas retas cruzadas na diagonal formando a letra X"
+          />
+        </button>
+        <div class="popupprofilepicture__content">
+          <h5 class="popupprofilepicture__title">Alterar a foto do perfil</h5>
+          <form
+            id="popupprofilepicture-form"
+            class="popupprofilepicture__form"
+            name="popupprofilepicture-form"
+            novalidate
+          >
+            <div class="popupprofilepicture__target">
+              <input
+                id="linkprofile-picture"
+                required
+                class="popupprofilepicture__input popupprofilepicture__input-error"
+                type="url"
+                placeholder="Insira um link de imagem aqui"
+              />
+              <span class="error__message" id="local-error"></span>
+            </div>
+            <button
+              class="popupprofilepicture__button error__button"
+              type="submit"
+            >
+              Salvar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- ------------------------------------- TEMPLATE CARD ----------------------------------------- -->
 
     <template id="card-template">

@@ -27,6 +27,12 @@ import {
   imagePopup,
   imagePopupCloseButton,
   ownerId,
+  editProfileButton,
+  profilePopup,
+  closeProfileButton,
+  profileImage,
+  inputField,
+  saveProfileButton,
 } from "./utils.js"
 
 //------------ Instância de Api --------------
@@ -294,6 +300,36 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     popupConfirmation.style.display = "none";
   }
+});
+
+//--------------------------  Abrir e Fechar Popup de trocar imagem do perfil ---------
+
+// Abre o popup ao clicar no botão de editar
+editProfileButton.addEventListener("click", () => {
+  profilePopup.style.display = "flex";
+});
+
+// Fecha o popup e atualiza a imagem ao clicar no botão de salvar
+saveProfileButton.addEventListener("click", () => {
+  const imageUrl = inputField.value.trim();
+
+  if (imageUrl) {
+    const newImage = new Image();
+    newImage.src = imageUrl;
+    newImage.className = "content__profile-image";
+    newImage.alt = "Nova imagem de perfil";
+
+    profileImage.replaceWith(newImage);
+
+    profilePopup.style.display = "none";
+    inputField.value = "";
+    saveProfileButton.disabled = true;
+  }
+});
+
+// Fecha o popup ao clicar no botão de fechar
+closeProfileButton.addEventListener("click", () => {
+  profilePopup.style.display = "none";
 });
 
 

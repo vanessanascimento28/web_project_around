@@ -17,14 +17,6 @@
   align-items: center;
 }
 
-.content__edit-icon {
-  position: absolute;
-  margin-right: 30px;
-  max-width: 26px;
-  border-radius: 50%;
-  opacity: 0;
-}
-
 .content__profile-image {
   border-radius: 50%;
   object-fit: cover;
@@ -33,8 +25,27 @@
   display: block;
 }
 
-.content__profile-image:hover {
-  opacity: 80%;
+.content__profile-wrapper:hover .content__profile-image {
+  opacity: 0.8;
+}
+
+.content__profile-wrapper:hover .content__edit-icon {
+  opacity: 1;
+}
+
+.content__editbtn {
+  max-width: 26px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.content__edit-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .content__text {
