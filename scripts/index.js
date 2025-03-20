@@ -55,22 +55,15 @@ const userInfo = new Userinfo({
 
 //----------- Api do Usuário -------------------
 
-apiInst.getUsersInfo().then(res => {
-  if (res.status !== 200) { //se for diferente de 200 retorna com erro
-    return Promise.reject("Deu erro no get users!")
-  }
-  return res.json()
-})
-  .then(users => {
-    const owner = users.find(user => user._id == ownerId) //verifica se sou o usuário criador
-    if (!owner) {
-      throw new Error("Seu usuário não foi encontrado!");
-    }
-    userInfo.setUserInfo(owner.name, owner.about, owner.avatar);
+apiInst.getUserInfo()
+  .then(user => {
+    userInfo.setUserInfo({
+      name: user.name,
+      about: user.about,
+      avatar: user.avatar
+    });
   })
-  .catch(error => {
-    console.log(`[GET] - /users - ${error}`);
-  });
+  .catch(error => console.error(`Erro ao carregar usuário: ${error}`));
 
 //------------- Remove o Popup de Imagem ----------------
 
@@ -96,21 +89,25 @@ function handleLike(cardId, isLiked) {
 
 // ------------- Api deletar o cartão do idUser ------------
 
-function deleteCard(card) {
+function handleDeleteCard(card, cardElement) {
   if (card.owner !== ownerId) {
-  } if (trashIcon) {
-    document.querySelector(".card__trash-icon").remove;
+    console.log("Você não tem permissão para excluir este card.");
+    return;
   }
 
-  const cardId = card._id
+  const cardId = card._id;
 
-  apiInst.deleteCard(cardId).then(res => {
-    if (res.status !== 204) {
-      return Promise.reject(`Erro no delete do id: ${cardId}`)
-    }
-  }).catch(error => {
-    console.log(`[DELETE] - /cards - ${error}`);
-  })
+  apiInst.deleteCard(cardId)
+    .then(res => {
+      if (res.status !== 204) {
+        return Promise.reject(`Erro no delete do id: ${cardId}`);
+      }
+
+      cardElement.remove();
+    })
+    .catch(error => {
+      console.log(`[DELETE] - /cards - ${error}`);
+    });
 }
 
 let section
@@ -194,27 +191,21 @@ popupWithImage.setEventListeners();
 const popupWithFormUser = new PopupWithForm({
   popupSelector: ".popup",
   handleFormSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
-
     apiInst.updateUser(formData)
       .then(res => {
-        if (res.status !== 200) {
-          return Promise.reject("Deu erro no patch")
+        if (!res.ok) {
+          return Promise.reject("Erro ao atualizar usuário");
         }
         return res.json();
-
       })
       .then(user => {
-
         userInfo.setUserInfo({
           name: user.name,
           about: user.about,
           avatar: user.avatar
         });
       })
-      .catch(error => {
-        console.error(`[GET] - /users/me - ${error}`);
-      })
+      .catch(error => console.error(`[PATCH] - /users/me - ${error}`));
   },
 });
 
@@ -233,6 +224,34 @@ const popupWithFormImage = new PopupWithForm({
     addNewCard(formData)
   },
 })
+
+// ----- Atualizar o Avatar -----
+
+const popupWithFormAvatar = new PopupWithForm({
+  popupSelector: ".popupprofilepicture",
+  handleFormSubmit: (formData) => {
+    const avatarUrl = formData.avatar;
+    apiInst.updateAvatar(avatarUrl)
+      .then(res => {
+        if (!res.ok) {
+          return Promise.reject("Erro ao atualizar o avatar");
+        }
+        return res.json();
+      })
+      .then(user => {
+        userInfo.setUserInfo({ avatar: user.avatar });
+      })
+      .catch(error => console.error(`[PATCH] - /users/me/avatar - ${error}`));
+  },
+});
+
+// Adiciona evento para abrir o popup ao clicar no botão de editar avatar
+editProfileButton.addEventListener("click", () => {
+  popupWithFormAvatar.open();
+});
+
+// Ativar eventos do popup
+popupWithFormAvatar.setEventListeners();
 
 // --------- Eventos de Escuta ------------
 
