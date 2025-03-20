@@ -230,7 +230,7 @@ const popupWithFormImage = new PopupWithForm({
 const popupWithFormAvatar = new PopupWithForm({
   popupSelector: ".popupprofilepicture",
   handleFormSubmit: (formData) => {
-    const avatarUrl = formData.avatar;
+    const avatarUrl = formData['linkprofile-picture'];
     apiInst.updateAvatar(avatarUrl)
       .then(res => {
         if (!res.ok) {
@@ -329,22 +329,22 @@ editProfileButton.addEventListener("click", () => {
 });
 
 // Fecha o popup e atualiza a imagem ao clicar no botão de salvar
-saveProfileButton.addEventListener("click", () => {
-  const imageUrl = inputField.value.trim();
+// saveProfileButton.addEventListener("click", () => {
+//   const imageUrl = inputField.value.trim();
 
-  if (imageUrl) {
-    const newImage = new Image();
-    newImage.src = imageUrl;
-    newImage.className = "content__profile-image";
-    newImage.alt = "Nova imagem de perfil";
+//   if (imageUrl) {
+//     const newImage = new Image();
+//     newImage.src = imageUrl;
+//     newImage.className = "content__profile-image";
+//     newImage.alt = "Nova imagem de perfil";
 
-    profileImage.replaceWith(newImage);
+//     profileImage.replaceWith(newImage);
 
-    profilePopup.style.display = "none";
-    inputField.value = "";
-    saveProfileButton.disabled = true;
-  }
-});
+//     profilePopup.style.display = "none";
+//     inputField.value = "";
+//     saveProfileButton.disabled = true;
+//   }
+// });
 
 // Fecha o popup ao clicar no botão de fechar
 closeProfileButton.addEventListener("click", () => {
