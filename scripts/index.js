@@ -310,7 +310,7 @@ confirmButton.addEventListener("click", () => {
         if (element) {
           element.remove();
         }
-        document.querySelector(".popupconfirmation").classList.add("hidden");
+        document.querySelector(".popupconfirmation").style.display = "none";
         window.cardToDelete = null;
       })
       .catch(error => console.error("Erro ao deletar card:", error));

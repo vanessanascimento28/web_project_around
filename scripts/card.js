@@ -35,7 +35,7 @@ export default class Card {
       window.cardToDelete = { card: this._card, element: this._element };
 
       // Adiciona um único listener para confirmação
-      const confirmButton = document.querySelector(".popupconfirmation__confirm-button");
+      const confirmButton = document.querySelector(".popupconfirmation__button");
       confirmButton.onclick = () => {
         this._handleDeleteCard(this._card, this._element);
         popupConfirmation.style.display = "none";
