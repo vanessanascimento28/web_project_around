@@ -1,10 +1,11 @@
 export default class Card {
-  constructor({ card, templateCard, handleCardClick, handleImageClick, handleLike }) {
+  constructor({ card, templateCard, handleCardClick, handleImageClick, handleLike, handleDeleteCard }) {
     this._card = card;
     this._templateCard = templateCard;
     this._handleCardClick = handleCardClick;
     this._handleImageClick = handleImageClick;
     this._handleLike = handleLike;
+    this._handleDeleteCard = handleDeleteCard;
   }
 
   _getTemplate() {
@@ -13,40 +14,39 @@ export default class Card {
   }
 
   _setEventListeners() {
-
     this._element.querySelector(".card__info-icon").addEventListener("click", () => {
-
       this._handleLike(this._card._id, this._card.isLiked)
-        .then(res => {
-
-          return res.json()
-        }).then(card => {
-
-          this._card = card
-          if (this._card.isLiked) {
-            this._element.querySelector(".card__info-icon").setAttribute("src", "./images/BlackHeart.svg");
-          } else {
-            this._element.querySelector(".card__info-icon").setAttribute("src", "./images/Vectorheart.svg");
-          }
-          return
-        }).catch(error => {
-          console.error(error)
-          console.error("Update Like Error")
+        .then(res => res.json())
+        .then(card => {
+          this._card = card;
+          const heartIcon = this._element.querySelector(".card__info-icon");
+          heartIcon.setAttribute("src", this._card.isLiked ? "./images/BlackHeart.svg" : "./images/Vectorheart.svg");
         })
-    })
+        .catch(error => {
+          console.error(error);
+          console.error("Update Like Error");
+        });
+    });
 
     this._element.querySelector(".card__trash-icon").addEventListener("click", () => {
-      // Armazena o card a ser deletado em uma variável global
-      window.cardToDelete = this._element;
+      const popupConfirmation = document.querySelector(".popupconfirmation");
+      popupConfirmation.style.display = "flex";
 
-      // Exibe o popup de confirmação
-      document.querySelector(".popupconfirmation").style.display = "flex";
+      window.cardToDelete = { card: this._card, element: this._element };
+
+      // Adiciona um único listener para confirmação
+      const confirmButton = document.querySelector(".popupconfirmation__confirm-button");
+      confirmButton.onclick = () => {
+        this._handleDeleteCard(this._card, this._element);
+        popupConfirmation.style.display = "none";
+      };
     });
 
     this._element.querySelector(".card__image").addEventListener("click", () => {
-      this._handleImageClick(this._card)
-    })
+      this._handleImageClick(this._card);
+    });
   }
+
 
   createCard() {
 

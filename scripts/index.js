@@ -5,6 +5,7 @@ import Popup from "./Popup.js";
 import Userinfo from "./Userinfo.js";
 import PopupWithForm from "./Popupwithform.js";
 import PopupWithImage from "./Popupwithimage.js";
+import Popupwithconfirmation from "./Popupwithconfirmation.js";
 import Api from "./Api.js";
 import {
   popup,
@@ -98,12 +99,8 @@ function handleDeleteCard(card, cardElement) {
   const cardId = card._id;
 
   apiInst.deleteCard(cardId)
-    .then(res => {
-      if (res.status !== 204) {
-        return Promise.reject(`Erro no delete do id: ${cardId}`);
-      }
-
-      cardElement.remove();
+    .then(() => {
+      cardElement.remove(); // Agora remove corretamente
     })
     .catch(error => {
       console.log(`[DELETE] - /cards - ${error}`);
@@ -119,7 +116,8 @@ function showItens(card) {
     templateCard: "#card-template",
     handleCardClick: "handleCardClick",
     handleImageClick: clickImage,
-    handleLike
+    handleLike,
+    handleDeleteCard
   });
   cardList.appendChild(newCard.createCard());
 }
@@ -173,7 +171,8 @@ function addNewCard(formData) {
       templateCard: "#card-template",
       handleCardClick: "click",
       handleImageClick: clickImage,
-      handleLike
+      handleLike,
+      handleDeleteCard
     });
 
     section.addItem(newCard.createCard());
@@ -300,13 +299,22 @@ const popupConfirmation = document.querySelector(".popupconfirmation");
 const confirmButton = popupConfirmation.querySelector(".popupconfirmation__button");
 const cancelButton = popupConfirmation.querySelector(".popupconfirmation__close-button");
 
+
 // Confirma a exclusão
 confirmButton.addEventListener("click", () => {
   if (window.cardToDelete) {
-    window.cardToDelete.remove();
-    window.cardToDelete = null;
+    const { card, element } = window.cardToDelete;
+
+    apiInst.deleteCard(card._id)
+      .then(() => {
+        if (element) {
+          element.remove();
+        }
+        document.querySelector(".popupconfirmation").classList.add("hidden");
+        window.cardToDelete = null;
+      })
+      .catch(error => console.error("Erro ao deletar card:", error));
   }
-  popupConfirmation.style.display = "none";
 });
 
 // Cancela a exclusão
@@ -328,23 +336,6 @@ editProfileButton.addEventListener("click", () => {
   profilePopup.style.display = "flex";
 });
 
-// Fecha o popup e atualiza a imagem ao clicar no botão de salvar
-// saveProfileButton.addEventListener("click", () => {
-//   const imageUrl = inputField.value.trim();
-
-//   if (imageUrl) {
-//     const newImage = new Image();
-//     newImage.src = imageUrl;
-//     newImage.className = "content__profile-image";
-//     newImage.alt = "Nova imagem de perfil";
-
-//     profileImage.replaceWith(newImage);
-
-//     profilePopup.style.display = "none";
-//     inputField.value = "";
-//     saveProfileButton.disabled = true;
-//   }
-// });
 
 // Fecha o popup ao clicar no botão de fechar
 closeProfileButton.addEventListener("click", () => {
