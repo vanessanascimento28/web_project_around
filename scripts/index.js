@@ -204,7 +204,8 @@ const popupWithFormUser = new PopupWithForm({
           avatar: user.avatar
         });
       })
-      .catch(error => console.error(`[PATCH] - /users/me - ${error}`));
+      .catch(error => console.error(`[PATCH] - /users/me - ${error}`))
+      .finally(() => popupWithFormUser.close())
   },
 });
 

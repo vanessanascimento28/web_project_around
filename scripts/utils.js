@@ -27,7 +27,7 @@ export const profilePopup = document.querySelector(".popupprofilepicture"); // P
 export const closeProfileButton = document.querySelector(".popupprofilepicture__close-button"); // Botão de fechar
 export const profileImage = document.querySelector(".content__profile-image"); // Imagem de perfil
 export const inputField = document.querySelector(".popupprofilepicture__input"); // Campo de URL
-export const saveProfileButton = document.querySelector(".popupprofilepicture__button"); // Botão de salvar
+export const saveProfileButton = document.querySelector(".popupprofilepicture__save-button"); // Botão de salvar
 export const initialCards = [
   { name: "Vale de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg" },
   { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg" },
