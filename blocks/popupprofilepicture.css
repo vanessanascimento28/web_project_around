@@ -7,6 +7,10 @@
   display: none;
 }
 
+.popupprofilepicture_opened {
+  display: flex;
+}
+
 .popupprofilepicture__overlay {
   width: 430px;
   height: 272px;
@@ -90,7 +94,7 @@
   border-bottom: 1px solid red;
 }
 
-.popupprofilepicture__button {
+.popupprofilepicture__save-button {
   max-width: 358px;
   width: 100%;
   height: 50px;
@@ -108,6 +112,6 @@
   align-items: center;
 }
 
-.popupprofilepicture__button:hover {
+.popupprofilepicture__save-button:hover {
   opacity: 80%;
 }

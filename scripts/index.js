@@ -110,7 +110,7 @@ function handleDeleteCard(card, cardElement) {
 let section
 
 function showItens(card) {
-  console.log(card)
+
   const newCard = new Card({
     card: card,
     templateCard: "#card-template",
@@ -220,7 +220,7 @@ editButton.addEventListener("click", () => {
 const popupWithFormImage = new PopupWithForm({
   popupSelector: ".addcard",
   handleFormSubmit: (formData) => {
-    console.log("Dados do formulário:", formData);
+
     addNewCard(formData)
   },
 })
@@ -297,26 +297,8 @@ document.addEventListener("keydown", (event) => {
 // --------------- Abrir e Fechar o Popup de Confirmação -------------------
 
 const popupConfirmation = document.querySelector(".popupconfirmation");
-const confirmButton = popupConfirmation.querySelector(".popupconfirmation__button");
 const cancelButton = popupConfirmation.querySelector(".popupconfirmation__close-button");
 
-
-// Confirma a exclusão
-confirmButton.addEventListener("click", () => {
-  if (window.cardToDelete) {
-    const { card, element } = window.cardToDelete;
-
-    apiInst.deleteCard(card._id)
-      .then(() => {
-        if (element) {
-          element.remove();
-        }
-        document.querySelector(".popupconfirmation").style.display = "none";
-        window.cardToDelete = null;
-      })
-      .catch(error => console.error("Erro ao deletar card:", error));
-  }
-});
 
 // Cancela a exclusão
 cancelButton.addEventListener("click", () => {
@@ -332,10 +314,10 @@ document.addEventListener("keydown", (event) => {
 
 //--------------------------  Abrir e Fechar Popup de trocar imagem do perfil ---------
 
-// Abre o popup ao clicar no botão de editar
-editProfileButton.addEventListener("click", () => {
-  profilePopup.style.display = "flex";
-});
+// // Abre o popup ao clicar no botão de editar
+// editProfileButton.addEventListener("click", () => {
+//   profilePopup.style.display = "flex";
+// });
 
 
 // Fecha o popup ao clicar no botão de fechar
