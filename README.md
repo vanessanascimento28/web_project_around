@@ -54,18 +54,18 @@ O maior desafio foi lidar com o JavaScript, uma linguagem totalmente nova para m
 - Modularizar o JavaScript em arquivos separados  
 - Adicionar localStorage para persistência dos dados  
 
-## 🌐 Link da Página
+**🌐 Link da Página**
 
 🖥️ Visualize aqui:  
 [https://vanessanascimento28.github.io/web_project_around/](https://vanessanascimento28.github.io/web_project_around/)
 
 ---
 
-## 📂 Repositório GitHub
+**📂 Repositório GitHub**
 
 🔗 https://github.com/vanessanascimento28/web_project_around
 
-## 👩‍💻 Autora
+**👩‍💻 Autora**
 
 Feito por [Vanessa do Nascimento da Silva](https://www.linkedin.com/in/vanessa-nascimento-da-silva-63728b142/)
 
