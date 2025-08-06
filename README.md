@@ -15,6 +15,7 @@ A proposta simula uma galeria de fotos dos Estados Unidos, com foco em layout ad
 **✅ Resultado**
 
 A aplicação foi concluída e publicada no GitHub Pages. A funcionalidade de edição de perfil via pop-up está totalmente funcional, e o layout responde bem às diferentes larguras de tela. O maior aprendizado foi integrar pela primeira vez HTML, CSS e JavaScript em uma única aplicação funcional.
+O maior desafio foi lidar com o JavaScript, uma linguagem totalmente nova para mim.
 
 **🛠 Tecnologias Utilizadas**
 
